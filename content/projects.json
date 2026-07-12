@@ -23,7 +23,7 @@
     "status": "PERSONAL AI SHORT FILM",
     "summary": "以闽南送河仪式为背景，讲述一位女儿在父亲离世后，打破‘女人不得上舟’的旧规矩，替父亲完成最后一程。",
     "summaryEn": "A daughter breaks an old rule and beats the drum for her father's final river journey.",
-    "cover": "assets/zhou-cover.jpg",
+    "cover": "assets/zhou-realcover.jpg",
     "videoUrl": "",
     "gallery": ["assets/zhou-process-01.jpg", "assets/zhou-process-02.jpg"]
   },
@@ -53,7 +53,8 @@
     "summaryEn": "An eastern action RPG world about memory, order and rebellion, originating from the myth of Xing Tian.",
     "cover": "",
     "videoUrl": "",
-    "gallery": []
+    "videoPage": "https://www.bilibili.com/video/BV1UMTM6sEFY/?share_source=copy_web&vd_source=c01332795980ec54ec05dc6f138d2c63"
+    "gallery": ["assets/shanhai-design.jpg"]
   },
   {
     "slug": "commercial-ai-film",
