@@ -20,7 +20,7 @@ function projectHref(project) {
 function projectCard(project, index) {
   const href = projectHref(project);
   const direct = false;
-  return `<article class="project-card reveal"><div class="project-index">${String(index + 1).padStart(2, "0")}.</div><div class="project-meta"><span>${esc(project.category)}</span><span>${esc(project.year)}</span></div><a class="project-visual" href="${esc(href)}" data-cursor-label="${direct ? "WATCH FILM" : "ENTER PROJECT"}">${projectVisual(project)}<span class="project-hover">${direct ? "WATCH FILM ↗" : "ENTER PROJECT ↗"}</span></a><div class="project-copy"><div><p class="project-status">${esc(project.status)}</p><h3>${esc(project.title)}</h3><p class="project-title-en">${esc(project.titleEn)}</p></div><div class="project-summary"><p>${esc(project.summary)}</p><p>${esc(project.summaryEn)}</p><p class="project-role">ROLE · ${esc(project.role)}</p></div></div></article>`;
+  return `<article class="project-card reveal"><div class="project-index">${String(index + 1).padStart(2, "0")}.</div><div class="project-meta"><span>${esc(project.category)}</span><span>${esc(project.year)}</span></div><a class="project-visual" href="${esc(href)}" data-cursor-label="${direct ? "WATCH FILM" : "ENTER PROJECT"}">${projectVisual(project)}<span class="project-hover">${direct ? "ENTER PROJECT ↗" : "ENTER PROJECT ↗"}</span></a><div class="project-copy"><div><p class="project-status">${esc(project.status)}</p><h3>${esc(project.title)}</h3><p class="project-title-en">${esc(project.titleEn)}</p></div><div class="project-summary"><p>${esc(project.summary)}</p><p>${esc(project.summaryEn)}</p><p class="project-role">ROLE · ${esc(project.role)}</p></div></div></article>`;
 }
 
 function renderHome(projects) {
