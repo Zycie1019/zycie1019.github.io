@@ -13,8 +13,14 @@ function projectVisual(project) {
   return `<div class="project-placeholder"><span>山</span><span>海</span><span>刑</span><span>天</span></div>`;
 }
 
+function projectHref(project) {
+  return project.videoPage || `work.html?slug=${encodeURIComponent(project.slug)}`;
+}
+
 function projectCard(project, index) {
-  return `<article class="project-card"><div class="project-index">${String(index + 1).padStart(2, "0")}.</div><div class="project-meta"><span>${esc(project.category)}</span><span>${esc(project.year)}</span></div><a class="project-visual" href="work.html?slug=${encodeURIComponent(project.slug)}">${projectVisual(project)}<span class="project-hover">ENTER PROJECT ↗</span></a><div class="project-copy"><div><p class="project-status">${esc(project.status)}</p><h3>${esc(project.title)}</h3><p class="project-title-en">${esc(project.titleEn)}</p></div><div class="project-summary"><p>${esc(project.summary)}</p><p>${esc(project.summaryEn)}</p><p class="project-role">ROLE · ${esc(project.role)}</p></div></div></article>`;
+  const href = projectHref(project);
+  const direct = Boolean(project.videoPage);
+  return `<article class="project-card reveal"><div class="project-index">${String(index + 1).padStart(2, "0")}.</div><div class="project-meta"><span>${esc(project.category)}</span><span>${esc(project.year)}</span></div><a class="project-visual" href="${esc(href)}" data-cursor-label="${direct ? "WATCH FILM" : "ENTER PROJECT"}">${projectVisual(project)}<span class="project-hover">${direct ? "WATCH FILM ↗" : "ENTER PROJECT ↗"}</span></a><div class="project-copy"><div><p class="project-status">${esc(project.status)}</p><h3>${esc(project.title)}</h3><p class="project-title-en">${esc(project.titleEn)}</p></div><div class="project-summary"><p>${esc(project.summary)}</p><p>${esc(project.summaryEn)}</p><p class="project-role">ROLE · ${esc(project.role)}</p></div></div></article>`;
 }
 
 function renderHome(projects) {
@@ -26,15 +32,50 @@ function renderDetail(projects, project) {
   document.title = `${project.title} · Yicheng Zhu`;
   const index = projects.findIndex((item) => item.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
-  const media = project.videoUrl ? `<video controls preload="metadata" poster="${esc(project.cover)}"><source src="${esc(project.videoUrl)}" type="video/mp4">您的浏览器暂不支持视频播放。</video>` : projectVisual(project);
-  document.querySelector("#detail").innerHTML = `<main class="project-page"><header class="project-header"><a href="index.html">YICHENG ZHU</a><a href="index.html#work">← ALL WORKS</a><span>${esc(project.category)} / ${esc(project.year)}</span></header><section class="project-hero grid-lines"><div class="project-hero-number">PROJECT ${String(index + 1).padStart(2, "0")}</div><div class="project-hero-status">${esc(project.status)}</div><h1>${esc(project.title)}</h1><p class="project-hero-en">${esc(project.titleEn)}</p><div class="project-hero-copy"><p>${esc(project.summary)}</p><p>${esc(project.summaryEn)}</p></div><div class="project-hero-role">ROLE<br>${esc(project.role)}</div></section><section class="project-feature">${media}</section>${project.gallery.length ? `<section class="project-gallery"><div class="gallery-label">AIGC VISUAL DEVELOPMENT / PROJECT ARCHIVE</div>${project.gallery.map((image, i) => `<figure><img src="${esc(image)}" alt="${esc(project.title)} 项目视觉 ${i + 1}"></figure>`).join("")}</section>` : ""}<section class="next-project grid-lines"><p>NEXT PROJECT</p><a href="work.html?slug=${encodeURIComponent(next.slug)}">${esc(next.title)} <span>${esc(next.titleEn)}</span> →</a></section></main>`;
+  const media = project.videoUrl
+    ? (project.videoUrl.match(/\.(mp4|webm|ogg)(\?|$)/i)
+      ? `<video controls preload="metadata" poster="${esc(project.cover)}"><source src="${esc(project.videoUrl)}">您的浏览器暂不支持视频播放。</video>`
+      : `<a class="external-film" href="${esc(project.videoUrl)}" target="_blank" rel="noreferrer"><span>OPEN VIDEO LINK</span><strong>WATCH FILM ↗</strong></a>`)
+    : `<a class="media-placeholder" href="${esc(project.videoPage || "#")}"${project.videoPage ? ' target="_blank" rel="noreferrer"' : ""}>${projectVisual(project)}<span>VIDEO LINK COMING SOON</span></a>`;
+  document.querySelector("#detail").innerHTML = `<main class="project-page"><header class="project-header"><a href="index.html">YICHENG ZHU</a><a href="index.html#work">← ALL WORKS</a><span>${esc(project.category)} / ${esc(project.year)}</span></header><section class="project-hero grid-lines"><div class="project-hero-number">PROJECT ${String(index + 1).padStart(2, "0")}</div><div class="project-hero-status">${esc(project.status)}</div><h1>${esc(project.title)}</h1><p class="project-hero-en">${esc(project.titleEn)}</p><div class="project-hero-copy"><p>${esc(project.summary)}</p><p>${esc(project.summaryEn)}</p></div><div class="project-hero-role">ROLE<br>${esc(project.role)}</div></section><section class="project-feature">${media}</section>${project.gallery.length ? `<section class="project-gallery"><div class="gallery-label">AIGC VISUAL DEVELOPMENT / PROJECT ARCHIVE</div>${project.gallery.map((image, i) => `<figure class="reveal"><img src="${esc(image)}" alt="${esc(project.title)} 项目视觉 ${i + 1}"></figure>`).join("")}</section>` : ""}<section class="next-project grid-lines"><p>NEXT PROJECT</p><a href="work.html?slug=${encodeURIComponent(next.slug)}">${esc(next.title)} <span>${esc(next.titleEn)}</span> →</a></section></main>`;
+}
+
+function setupInteractions() {
+  document.body.classList.add("page-ready");
+  const orb = document.createElement("div");
+  orb.className = "cursor-orb";
+  orb.innerHTML = "<span>VIEW</span>";
+  document.body.appendChild(orb);
+  window.addEventListener("pointermove", (event) => {
+    document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
+    document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
+    const target = event.target.closest("[data-cursor-label]");
+    orb.classList.toggle("is-active", Boolean(target));
+    if (target) orb.querySelector("span").textContent = target.dataset.cursorLabel;
+  }, { passive: true });
+  document.querySelectorAll(".project-visual").forEach((visual) => {
+    visual.addEventListener("pointermove", (event) => {
+      const rect = visual.getBoundingClientRect();
+      visual.style.setProperty("--mx", `${((event.clientX - rect.left) / rect.width - .5) * 2}`);
+      visual.style.setProperty("--my", `${((event.clientY - rect.top) / rect.height - .5) * 2}`);
+    });
+    visual.addEventListener("pointerleave", () => {
+      visual.style.setProperty("--mx", "0");
+      visual.style.setProperty("--my", "0");
+    });
+  });
+  const reveal = new IntersectionObserver((entries) => entries.forEach((entry) => {
+    if (entry.isIntersecting) { entry.target.classList.add("is-visible"); reveal.unobserve(entry.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll(".reveal").forEach((element) => reveal.observe(element));
 }
 
 fetch(projectsUrl).then((response) => response.json()).then((projects) => {
   const slug = new URLSearchParams(window.location.search).get("slug");
-  if (document.querySelector("#detail")) {
+    if (document.querySelector("#detail")) {
     renderDetail(projects, projects.find((project) => project.slug === slug) || projects[0]);
   } else renderHome(projects);
+  setupInteractions();
 }).catch(() => {
   document.body.innerHTML = "<p style='padding:40px;font-family:Arial'>Content could not be loaded.</p>";
 });
