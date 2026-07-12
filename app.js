@@ -19,8 +19,7 @@ function projectHref(project) {
 
 function projectCard(project, index) {
   const href = projectHref(project);
-  const direct = false;
-  return `<article class="project-card reveal"><div class="project-index">${String(index + 1).padStart(2, "0")}.</div><div class="project-meta"><span>${esc(project.category)}</span><span>${esc(project.year)}</span></div><a class="project-visual" href="${esc(href)}" data-cursor-label="${direct ? "WATCH FILM" : "ENTER PROJECT"}">${projectVisual(project)}<span class="project-hover">${direct ? "ENTER PROJECT ↗" : "ENTER PROJECT ↗"}</span></a><div class="project-copy"><div><p class="project-status">${esc(project.status)}</p><h3>${esc(project.title)}</h3><p class="project-title-en">${esc(project.titleEn)}</p></div><div class="project-summary"><p>${esc(project.summary)}</p><p>${esc(project.summaryEn)}</p><p class="project-role">ROLE · ${esc(project.role)}</p></div></div></article>`;
+  return `<article class="project-card reveal"><div class="project-index">${String(index + 1).padStart(2, "0")}.</div><div class="project-meta"><span>${esc(project.category)}</span><span>${esc(project.year)}</span></div><a class="project-visual" href="${esc(href)}" data-cursor-label="ENTER PROJECT">${projectVisual(project)}<span class="project-hover">ENTER PROJECT ↗</span></a><div class="project-copy"><div><p class="project-status">${esc(project.status)}</p><h3>${esc(project.title)}</h3><p class="project-title-en">${esc(project.titleEn)}</p></div><div class="project-summary"><p>${esc(project.summary)}</p><p>${esc(project.summaryEn)}</p><p class="project-role">ROLE · ${esc(project.role)}</p></div></div></article>`;
 }
 
 function renderHome(projects) {
@@ -35,8 +34,10 @@ function renderDetail(projects, project) {
   const media = project.videoUrl
     ? (project.videoUrl.match(/\.(mp4|webm|ogg)(\?|$)/i)
       ? `<video controls preload="metadata" poster="${esc(project.cover)}"><source src="${esc(project.videoUrl)}">您的浏览器暂不支持视频播放。</video>`
-      : `<a class="external-film" href="${esc(project.videoUrl)}" target="_blank" rel="noreferrer"><span>OPEN VIDEO LINK</span><strong>ENTER PROJECT ↗ ↗</strong></a>`)
-    : `<a class="media-placeholder" href="${esc(project.videoPage || "#")}"${project.videoPage ? ' target="_blank" rel="noreferrer"' : ""}>${projectVisual(project)}<span>ENTER PROJECT ↗</span></a>`;
+      : `<a class="external-film" href="${esc(project.videoUrl)}" target="_blank" rel="noreferrer"><span>OPEN VIDEO LINK</span><strong>WATCH FILM ↗</strong></a>`)
+    : project.videoPage
+      ? `<a class="media-placeholder" href="${esc(project.videoPage)}" target="_blank" rel="noreferrer">${projectVisual(project)}<span>WATCH FILM ↗</span></a>`
+      : `<div class="media-placeholder">${projectVisual(project)}<span>VIDEO LINK COMING SOON</span></div>`;
   document.querySelector("#detail").innerHTML = `<main class="project-page"><header class="project-header"><a href="index.html">YICHENG ZHU</a><a href="index.html#work">← ALL WORKS</a><span>${esc(project.category)} / ${esc(project.year)}</span></header><section class="project-hero grid-lines"><div class="project-hero-number">PROJECT ${String(index + 1).padStart(2, "0")}</div><div class="project-hero-status">${esc(project.status)}</div><h1>${esc(project.title)}</h1><p class="project-hero-en">${esc(project.titleEn)}</p><div class="project-hero-copy"><p>${esc(project.summary)}</p><p>${esc(project.summaryEn)}</p></div><div class="project-hero-role">ROLE<br>${esc(project.role)}</div></section><section class="project-feature">${media}</section>${project.gallery.length ? `<section class="project-gallery"><div class="gallery-label">AIGC VISUAL DEVELOPMENT / PROJECT ARCHIVE</div>${project.gallery.map((image, i) => `<figure class="reveal"><img src="${esc(image)}" alt="${esc(project.title)} 项目视觉 ${i + 1}"></figure>`).join("")}</section>` : ""}<section class="next-project grid-lines"><p>NEXT PROJECT</p><a href="work.html?slug=${encodeURIComponent(next.slug)}">${esc(next.title)} <span>${esc(next.titleEn)}</span> →</a></section></main>`;
 }
 
