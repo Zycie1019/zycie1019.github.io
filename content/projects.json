@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "killjoy",
+    "title": "扫兴",
+    "titleEn": "KILLJOY",
+    "category": "DIRECTED SHORT FILM",
+    "year": "2025",
+    "role": "DIRECTOR / SCREENWRITER / EDITOR",
+    "status": "AWARDED SHORT FILM",
+    "summary": "一部关于中国式亲子关系中沉默、误解与爱的错位的微电影。",
+    "summaryEn": "A short film about silence, misunderstanding and misplaced love in Chinese parent-child relationships.",
+    "cover": "assets/killjoy-cover.jpg",
+    "videoUrl": "",
+    "gallery": ["assets/killjoy-design.jpg", "assets/killjoy-synopsis.jpg"]
+  },
+  {
+    "slug": "zhou",
+    "title": "舟",
+    "titleEn": "DRAGON BOAT",
+    "category": "AIGC ANIMATED SHORT FILM",
+    "year": "2026",
+    "role": "DIRECTOR / SCREENWRITER / AI VISUAL / EDITOR",
+    "status": "PERSONAL AI SHORT FILM",
+    "summary": "以闽南送河仪式为背景，讲述一位女儿在父亲离世后，打破‘女人不得上舟’的旧规矩，替父亲完成最后一程。",
+    "summaryEn": "A daughter breaks an old rule and beats the drum for her father's final river journey.",
+    "cover": "assets/zhou-cover.jpg",
+    "videoUrl": "",
+    "gallery": ["assets/zhou-process-01.jpg", "assets/zhou-process-02.jpg"]
+  },
+  {
+    "slug": "he-is-and-is-he",
+    "title": "是亦彼也",
+    "titleEn": "HE IS AND IS HE",
+    "category": "AIGC SCI-FI SHORT FILM",
+    "year": "2026",
+    "role": "CONCEPT / SCREENWRITING / AI VISUAL / EDITING",
+    "status": "IDENTITY FICTION",
+    "summary": "当身份可以被替换，谁还被允许成为人？",
+    "summaryEn": "When identity can be replaced, who is still allowed to be human?",
+    "cover": "assets/heisand-cover.jpg",
+    "videoUrl": "",
+    "gallery": ["assets/heisand-concept.jpg", "assets/heisand-world.jpg", "assets/heisand-development.jpg"]
+  },
+  {
+    "slug": "shanhai-xingtian",
+    "title": "山海·刑天",
+    "titleEn": "SHANHAI: XINGTIAN",
+    "category": "GAME CONCEPT / CINEMATIC TRAILER",
+    "year": "2026",
+    "role": "WORLD BUILDING / CHARACTER / CINEMATIC DIRECTION",
+    "status": "IN DEVELOPMENT",
+    "summary": "以刑天神话为原点，构建关于个体、规训、记忆与反抗的东方动作 RPG 世界。",
+    "summaryEn": "An eastern action RPG world about memory, order and rebellion, originating from the myth of Xing Tian.",
+    "cover": "",
+    "videoUrl": "",
+    "gallery": []
+  },
+  {
+    "slug": "commercial-ai-film",
+    "title": "与垃圾袋无关",
+    "titleEn": "COMMERCIAL AI FILM",
+    "category": "COMMERCIAL AIGC FILM",
+    "year": "2026",
+    "role": "AI VISUAL / MOTION / EDITING",
+    "status": "COMMERCIAL WORK",
+    "summary": "在商业项目中参与 AI 辅助短片制作，负责视觉生成、动态影像开发、剪辑与成片交付。",
+    "summaryEn": "AI-assisted commercial production spanning visual generation, motion development and final delivery.",
+    "cover": "assets/commercial-still.jpg",
+    "videoUrl": "",
+    "gallery": ["assets/commercial-cover.jpg"]
+  }
+]
