@@ -41,7 +41,7 @@
     "summaryEn": "When identity can be replaced, who is still allowed to be human?",
     "cover": "assets/heisand-cover.jpg",
     "videoUrl": "",
-    "gallery": ["assets/heisand-concept.jpg", "assets/heisand-world.jpg", "assets/heisand-development.jpg"]
+    "gallery": ["assets/heisand-cover.jpg", "assets/heisand-concept.jpg", "assets/heisand-world.jpg", "assets/heisand-development.jpg"]
   },
   {
     "slug": "shanhai-xingtian",
