@@ -14,7 +14,7 @@ function projectVisual(project) {
 }
 
 function projectHref(project) {
-  return project.videoPage || `work.html?slug=${encodeURIComponent(project.slug)}`;
+  return `work.html?slug=${encodeURIComponent(project.slug)}`;
 }
 
 function projectCard(project, index) {
