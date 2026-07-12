@@ -42,17 +42,6 @@ function renderDetail(projects, project) {
 
 function setupInteractions() {
   document.body.classList.add("page-ready");
-  const orb = document.createElement("div");
-  orb.className = "cursor-orb";
-  orb.innerHTML = "<span>VIEW</span>";
-  document.body.appendChild(orb);
-  window.addEventListener("pointermove", (event) => {
-    document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
-    document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
-    const target = event.target.closest("[data-cursor-label]");
-    orb.classList.toggle("is-active", Boolean(target));
-    if (target) orb.querySelector("span").textContent = target.dataset.cursorLabel;
-  }, { passive: true });
   document.querySelectorAll(".project-visual").forEach((visual) => {
     visual.addEventListener("pointermove", (event) => {
       const rect = visual.getBoundingClientRect();

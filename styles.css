@@ -3,10 +3,6 @@
 :root{--pointer-x:50vw;--pointer-y:50vh}
 body{opacity:1;transition:opacity .7s ease}
 body.page-ready{opacity:1}
-.cursor-orb{position:fixed;left:var(--pointer-x);top:var(--pointer-y);z-index:100;pointer-events:none;width:14px;height:14px;border:1px solid var(--ink);border-radius:50%;transform:translate(-50%,-50%);transition:width .25s ease,height .25s ease,background .25s ease,border-color .25s ease;mix-blend-mode:multiply}
-.cursor-orb span{display:block;opacity:0;white-space:nowrap;transform:translate(-50%,-50%);position:absolute;left:50%;top:50%;font-size:7px;letter-spacing:.12em}
-.cursor-orb.is-active{width:92px;height:92px;background:var(--red);border-color:var(--red);color:#fff;mix-blend-mode:normal}
-.cursor-orb.is-active span{opacity:1}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
 .reveal.is-visible{opacity:1;transform:none}
 .project-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.22) 48%,transparent 64%);transform:translateX(-120%);transition:transform .9s ease;pointer-events:none}
